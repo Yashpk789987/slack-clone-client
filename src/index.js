@@ -44,7 +44,10 @@ const link = afterwareLink.concat(middlewareLink.concat(httpLink));
 
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  onError: e => {
+    console.log('Apllo Error', e);
+  }
 });
 
 const App = (

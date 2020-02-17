@@ -39,8 +39,6 @@ class Login extends React.Component {
       localStorage.setItem('refreshToken', refreshToken);
       this.props.history.push('/');
     } else {
-      const { ok, errors } = response.data.login;
-
       const err = {};
       errors.forEach(({ path, message }) => {
         err[`${path}Error`] = message;
