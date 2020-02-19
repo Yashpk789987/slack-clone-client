@@ -48,12 +48,6 @@ const createChannelMutation = gql`
   }
 `;
 
-// const createChannelMutation = gql`
-//   mutation {
-//     createChannel(teamId: 20, name: "channel 12333")
-//   }
-// `;
-
 export default compose(
   graphql(createChannelMutation),
   withFormik({
@@ -68,8 +62,6 @@ export default compose(
         let response = await mutate({
           variables: { teamId: parseInt(teamId), name: values.name }
         });
-        console.log('Response', response);
-
         setSubmitting(false);
       } catch (error) {
         console.log(error);
