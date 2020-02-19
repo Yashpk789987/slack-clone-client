@@ -5,10 +5,12 @@ import decode from 'jwt-decode';
 import Channels from '../components/Channels';
 import Teams from '../components/Teams';
 import AddChannelModal from '../components/AddChannelModal';
+import InvitePeopleModal from '../components/InvitePeopleModal';
 
 export default class Sidebar extends React.Component {
   state = {
-    openChannelModal: false
+    openChannelModal: false,
+    openInvitePeopleModal: false
   };
 
   handleAddChannelClick = () => {
@@ -17,6 +19,14 @@ export default class Sidebar extends React.Component {
 
   handleCloseAddChannelModal = () => {
     this.setState({ openChannelModal: false });
+  };
+
+  handleInvitePeopleClick = () => {
+    this.setState({ openInvitePeopleModal: true });
+  };
+
+  handleCloseInvitePeopleClickModal = () => {
+    this.setState({ openInvitePeopleModal: false });
   };
 
   render() {
@@ -34,6 +44,7 @@ export default class Sidebar extends React.Component {
       <Teams key='team-sidebar' teams={teams} />,
       <Channels
         onAddChannelClick={this.handleAddChannelClick}
+        onInvitePeopleClick={this.handleInvitePeopleClick}
         key='channels-sidebar'
         teamName={team.name}
         username={username}
@@ -49,6 +60,12 @@ export default class Sidebar extends React.Component {
         open={this.state.openChannelModal}
         key='side-bar-add-channel-modal'
         onClose={this.handleCloseAddChannelModal}
+      />,
+      <InvitePeopleModal
+        teamId={team.id}
+        open={this.state.openInvitePeopleModal}
+        key='invite-people-modal'
+        onClose={this.handleCloseInvitePeopleClickModal}
       />
     ];
   }
