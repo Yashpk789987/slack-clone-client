@@ -39,7 +39,6 @@ class CreateTeam extends React.Component {
       this.props.history.push('/login');
       return;
     }
-    console.log(response);
     const {
       ok,
       errors,
