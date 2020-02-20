@@ -32,10 +32,12 @@ export default class Sidebar extends React.Component {
     const { teams, team } = this.props;
 
     let username = '';
+    let isOwner = false;
     try {
       const token = localStorage.getItem('token');
       const { user } = decode(token);
       username = user.username;
+      isOwner = user.id === team.owner;
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +50,7 @@ export default class Sidebar extends React.Component {
         teamName={team.name}
         username={username}
         teamId={team.id}
+        isOwner={isOwner}
         channels={team.channels}
         users={[
           { id: 1, name: 'slackbot' },
