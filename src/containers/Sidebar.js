@@ -1,6 +1,5 @@
 import React from 'react';
 
-import findIndex from 'lodash/findIndex';
 import decode from 'jwt-decode';
 import Channels from '../components/Channels';
 import Teams from '../components/Teams';
