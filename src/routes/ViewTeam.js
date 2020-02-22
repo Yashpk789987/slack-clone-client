@@ -2,10 +2,11 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 
 import Header from '../components/Header';
-import Messages from '../components/Messages';
+
 import SendMessage from '../components/SendMessage';
 import AppLayout from '../components/AppLayout';
 import Sidebar from '../containers/Sidebar';
+import MessageContaier from '../containers/MessageContainer';
 import findIndex from 'lodash/findIndex';
 import { allTeamsQuery } from '../graphql/teams';
 import { Redirect } from 'react-router-dom';
@@ -48,14 +49,9 @@ const ViewTeam = ({
       />
       {channel && <Header channelName={channel.name} />}
       {channel && (
-        <Messages channelId={channel.id}>
-          <ul className='message-list'>
-            <li />
-            <li />
-          </ul>
-        </Messages>
+        <MessageContaier channelId={channel.id} channelName={channel.name} />
       )}
-      <SendMessage channelName={channel.name} />
+      <SendMessage channelId={channel.id} channelName={channel.name} />
     </AppLayout>
   );
 };
