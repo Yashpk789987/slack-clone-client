@@ -59,7 +59,7 @@ export default compose(
           return;
         }
 
-        let response = await mutate({
+        await mutate({
           variables: { channelId, text: values.message }
         });
 

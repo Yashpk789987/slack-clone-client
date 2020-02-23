@@ -8,6 +8,7 @@ import AppLayout from '../components/AppLayout';
 import Sidebar from '../containers/Sidebar';
 import MessageContaier from '../containers/MessageContainer';
 import findIndex from 'lodash/findIndex';
+
 import { allTeamsQuery } from '../graphql/teams';
 import { Redirect } from 'react-router-dom';
 
