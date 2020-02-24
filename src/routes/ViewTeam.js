@@ -9,11 +9,11 @@ import Sidebar from '../containers/Sidebar';
 import MessageContaier from '../containers/MessageContainer';
 import findIndex from 'lodash/findIndex';
 
-import { allTeamsQuery } from '../graphql/teams';
+import { meQuery } from '../graphql/teams';
 import { Redirect } from 'react-router-dom';
 
 const ViewTeam = ({
-  data: { loading, allTeams, inviteTeams },
+  data: { loading, me },
   match: {
     params: { teamId, channelId }
   }
@@ -22,7 +22,7 @@ const ViewTeam = ({
     return null;
   }
 
-  const teams = [...allTeams, ...inviteTeams];
+  const { teams, username } = me;
 
   if (!teams.length) {
     return <Redirect to='/create-team' />;
@@ -47,6 +47,7 @@ const ViewTeam = ({
           letter: t.name.charAt(0).toUpperCase()
         }))}
         team={team}
+        username={username}
       />
       {channel && <Header channelName={channel.name} />}
       {channel && (
@@ -57,4 +58,6 @@ const ViewTeam = ({
   );
 };
 
-export default graphql(allTeamsQuery)(ViewTeam);
+export default graphql(meQuery, { options: { fetchPolicy: 'network-only' } })(
+  ViewTeam
+);
