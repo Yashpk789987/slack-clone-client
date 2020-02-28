@@ -12,11 +12,10 @@ import findIndex from 'lodash/findIndex';
 import { meQuery } from '../graphql/teams';
 import { Redirect } from 'react-router-dom';
 
-const ViewTeam = ({
-  mutate,
+const DirectMessages = ({
   data: { loading, me },
   match: {
-    params: { teamId, channelId }
+    params: { teamId, userId }
   }
 }) => {
   if (loading) {
@@ -33,13 +32,6 @@ const ViewTeam = ({
   const teamIdx = teamIdInteger ? findIndex(teams, ['id', teamIdInteger]) : 0;
   const team = teamIdx === -1 ? teams[0] : teams[teamIdx];
 
-  const channelIdInteger = parseInt(channelId, 10);
-  const channelIdx = channelIdInteger
-    ? findIndex(team.channels, ['id', channelIdInteger])
-    : 0;
-  const channel =
-    channelIdx === -1 ? team.channels[0] : team.channels[channelIdx];
-
   return (
     <AppLayout>
       <Sidebar
@@ -50,27 +42,20 @@ const ViewTeam = ({
         team={team}
         username={username}
       />
-      {channel && <Header channelName={channel.name} />}
-      {channel && (
-        <MessageContaier channelId={channel.id} channelName={channel.name} />
-      )}
-      <SendMessage
-        onSubmit={async text => {
-          await mutate({ variables: { text, channelId: channel.id } });
-        }}
-        placeholder={channel.name}
-      />
+      {/* <Header channelName={channel.name} />
+      <MessageContaier channelId={channel.id} channelName={channel.name} /> */}
+      <SendMessage onSubmit={() => {}} placeholder={userId} />
     </AppLayout>
   );
 };
 
-const createMessageMutation = gql`
+const createDirectMessageMutation = gql`
   mutation($channelId: Int!, $text: String!) {
     createMessage(channelId: $channelId, text: $text)
   }
 `;
 
 export default compose(
-  graphql(meQuery, { options: { fetchPolicy: 'network-only' } }),
-  graphql(createMessageMutation)
-)(ViewTeam);
+  graphql(createDirectMessageMutation),
+  graphql(meQuery, { options: { fetchPolicy: 'network-only' } })
+)(DirectMessages);
