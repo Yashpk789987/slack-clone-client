@@ -1949,7 +1949,7 @@ apollo-boost@^0.4.7:
     ts-invariant "^0.4.0"
     tslib "^1.10.0"
 
-apollo-cache-inmemory@^1.0.0, apollo-cache-inmemory@^1.6.5:
+apollo-cache-inmemory@^1.1.0, apollo-cache-inmemory@^1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.6.5.tgz#2ccaa3827686f6ed7fb634203dbf2b8d7015856a"
   integrity sha512-koB76JUDJaycfejHmrXBbWIN9pRKM0Z9CJGQcBzIOtmte1JhEBSuzsOUu7NQgiXKYI4iGoMREcnaWffsosZynA==
@@ -1968,7 +1968,7 @@ apollo-cache@1.3.4, apollo-cache@^1.3.4:
     apollo-utilities "^1.3.3"
     tslib "^1.10.0"
 
-apollo-client@^2.0.1, apollo-client@^2.6.7:
+apollo-client@^2.0.2, apollo-client@^2.6.7:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.6.8.tgz#01cebc18692abf90c6b3806414e081696b0fa537"
   integrity sha512-0zvJtAcONiozpa5z5zgou83iEKkBaXhhSSXJebFHRXs100SecDojyUWKjwTtBPn9HbM6o5xrvC5mo9VQ5fgAjw==
@@ -2008,7 +2008,7 @@ apollo-link-http-common@^0.2.15:
     ts-invariant "^0.4.0"
     tslib "^1.9.3"
 
-apollo-link-http@^1.0.0, apollo-link-http@^1.3.1:
+apollo-link-http@^1.1.0, apollo-link-http@^1.3.1:
   version "1.5.16"
   resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.16.tgz#44fe760bcc2803b8a7f57fc9269173afb00f3814"
   integrity sha512-IA3xA/OcrOzINRZEECI6IdhRp/Twom5X5L9jMehfzEo2AXdeRwAMlH5LuvTZHgKD8V1MBnXdM6YXawXkTDSmJw==
@@ -5160,12 +5160,7 @@ hoist-non-react-statics@^1.2.0:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
   integrity sha1-qkSM8JhtVcxAdzsXF0t90GbLfPs=
 
-hoist-non-react-statics@^2.2.0:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
-  integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
-
-hoist-non-react-statics@^3.1.0:
+hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -5511,7 +5506,7 @@ internal-ip@^4.3.0:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
 
-invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -6650,12 +6645,7 @@ lodash._reinterpolate@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
 
-lodash.flowright@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.flowright/-/lodash.flowright-3.5.0.tgz#2b5fff399716d7e7dc5724fe9349f67065184d67"
-  integrity sha1-K1//OZcW1+fcVyT+k0n2cGUYTWc=
-
-lodash.isequal@4.5.0:
+lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
@@ -6664,11 +6654,6 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
-
-lodash.pick@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
-  integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
@@ -8719,7 +8704,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8883,17 +8868,18 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-apollo@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.0.0.tgz#c9cbda2956585d422800f1686d870258637170f8"
-  integrity sha512-jUhp/fJP41OxLeiYPsip+9b27TBdsVAS4vT9/TlVpwi+dNYRjKgf3v/G7kqbnmtt5i8X+6D2OUZGC49UEPMdlg==
+react-apollo@^2.0.1:
+  version "2.5.8"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.8.tgz#c7a593b027efeefdd8399885e0ac6bec3b32623c"
+  integrity sha512-60yOQrnNosxU/tRbOxGDaYNLFcOKmQqxHPhxyvKTlGIaF/rRCXQRKixUgWVffpEupSHHD7psY5k5ZOuZsdsSGQ==
   dependencies:
-    apollo-link "^1.0.0"
-    hoist-non-react-statics "^2.2.0"
-    invariant "^2.2.1"
-    lodash.flowright "^3.5.0"
-    lodash.pick "^4.4.0"
-    prop-types "^15.5.8"
+    apollo-utilities "^1.3.0"
+    fast-json-stable-stringify "^2.0.0"
+    hoist-non-react-statics "^3.3.0"
+    lodash.isequal "^4.5.0"
+    prop-types "^15.7.2"
+    ts-invariant "^0.4.2"
+    tslib "^1.9.3"
 
 react-app-polyfill@^1.0.5:
   version "1.0.5"
@@ -10515,7 +10501,7 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-ts-invariant@^0.4.0, ts-invariant@^0.4.4:
+ts-invariant@^0.4.0, ts-invariant@^0.4.2, ts-invariant@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.4.4.tgz#97a523518688f93aafad01b0e80eb803eb2abd86"
   integrity sha512-uEtWkFM/sdZvRNNDL3Ehu4WVpwaulhwQszV8mrtcdeE8nN00BV9mAmQ88RkrBhFgl9gMgvjJLAQcZbnPXI9mlA==
