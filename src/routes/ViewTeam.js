@@ -1,16 +1,15 @@
 import React from 'react';
 import { compose, graphql } from 'react-apollo';
+import findIndex from 'lodash/findIndex';
+import { Redirect } from 'react-router-dom';
+import gql from 'graphql-tag';
 
 import Header from '../components/Header';
-import gql from 'graphql-tag';
 import SendMessage from '../components/SendMessage';
 import AppLayout from '../components/AppLayout';
 import Sidebar from '../containers/Sidebar';
-import MessageContaier from '../containers/MessageContainer';
-import findIndex from 'lodash/findIndex';
-
+import MessageContainer from '../containers/MessageContainer';
 import { meQuery } from '../graphql/teams';
-import { Redirect } from 'react-router-dom';
 
 const ViewTeam = ({
   mutate,
@@ -23,7 +22,7 @@ const ViewTeam = ({
     return null;
   }
 
-  const { teams, username } = me;
+  const { username, teams } = me;
 
   if (!teams.length) {
     return <Redirect to='/create-team' />;
@@ -51,15 +50,15 @@ const ViewTeam = ({
         username={username}
       />
       {channel && <Header channelName={channel.name} />}
+      {channel && <MessageContainer channelId={channel.id} />}
       {channel && (
-        <MessageContaier channelId={channel.id} channelName={channel.name} />
+        <SendMessage
+          placeholder={channel.name}
+          onSubmit={async text => {
+            await mutate({ variables: { text, channelId: channel.id } });
+          }}
+        />
       )}
-      <SendMessage
-        onSubmit={async text => {
-          await mutate({ variables: { text, channelId: channel.id } });
-        }}
-        placeholder={channel.name}
-      />
     </AppLayout>
   );
 };

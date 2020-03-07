@@ -17,3 +17,5 @@ export const meQuery = gql`
     }
   }
 `;
+
+export const idk = {};
