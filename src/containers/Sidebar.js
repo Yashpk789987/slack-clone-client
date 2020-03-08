@@ -4,11 +4,22 @@ import Channels from '../components/Channels';
 import Teams from '../components/Teams';
 import AddChannelModal from '../components/AddChannelModal';
 import InvitePeopleModal from '../components/InvitePeopleModal';
+import DirectMessageModal from '../components/DirectMessageModal';
 
 export default class Sidebar extends React.Component {
   state = {
     openChannelModal: false,
-    openInvitePeopleModal: false
+    openInvitePeopleModal: false,
+    openDirectMessageModal: false
+  };
+
+  toggleDirectMessageModal = e => {
+    if (e) {
+      e.preventDefault();
+    }
+    this.setState(state => ({
+      openDirectMessageModal: !state.openDirectMessageModal
+    }));
   };
 
   toggleAddChannelClick = e => {
@@ -35,6 +46,7 @@ export default class Sidebar extends React.Component {
       <Channels
         onAddChannelClick={this.toggleAddChannelClick}
         onInvitePeopleClick={this.toggleInvitePeopleClick}
+        onDirectMessageClick={this.toggleDirectMessageModal}
         key='channels-sidebar'
         teamName={team.name}
         username={username}
@@ -51,6 +63,12 @@ export default class Sidebar extends React.Component {
         open={this.state.openChannelModal}
         key='side-bar-add-channel-modal'
         onClose={this.toggleAddChannelClick}
+      />,
+      <DirectMessageModal
+        teamId={team.id}
+        open={this.state.openDirectMessageModal}
+        key='side-bar-direct-message-modal'
+        onClose={this.toggleDirectMessageModal}
       />,
       <InvitePeopleModal
         teamId={team.id}

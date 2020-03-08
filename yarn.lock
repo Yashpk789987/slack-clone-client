@@ -3883,6 +3883,11 @@ dotenv@8.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
+downshift@1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-1.18.0.tgz#a1b0a7b19c06883df3a67dd8ca453e22089e1ed6"
+  integrity sha512-+QxtpCy5KCISFerdzV9/Rwd8sttptIwnC59r02NTaio1quQ7Y2hWBMgs4IigkeeV+WO6ZAmrR0bznbI8jRSKUQ==
+
 duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
