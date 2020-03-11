@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button, Icon, Input } from 'semantic-ui-react';
 import { withFormik } from 'formik';
-import { Input, Button, Icon } from 'semantic-ui-react';
 
 import FileUpload from './FileUpload';
 
 const SendMessageWrapper = styled.div`
   grid-column: 3;
-  grid-row: 3;
+  padding: 20px;
   display: grid;
-  grid-template-columns: 5% 95%;
+  grid-template-columns: 50px auto;
 `;
 
 const ENTER_KEY = 13;
@@ -50,17 +50,12 @@ export default withFormik({
     values,
     { props: { onSubmit }, setSubmitting, resetForm }
   ) => {
-    try {
-      if (!values.message || !values.message.trim()) {
-        setSubmitting(false);
-        return;
-      }
-
-      await onSubmit(values.message);
+    if (!values.message || !values.message.trim()) {
       setSubmitting(false);
-      resetForm();
-    } catch (error) {
-      console.log(error);
+      return;
     }
+
+    await onSubmit(values.message);
+    resetForm(false);
   }
 })(SendMessage);
