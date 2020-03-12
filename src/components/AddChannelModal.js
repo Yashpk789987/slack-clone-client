@@ -1,9 +1,10 @@
 import React from 'react';
-import { Form, Input, Button, Modal } from 'semantic-ui-react';
+import { Form, Input, Button, Modal, Checkbox } from 'semantic-ui-react';
 import { withFormik } from 'formik';
 import findIndex from 'lodash/findIndex';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import MultiSelectUsers from './MultiSelectUsers';
 
 import { meQuery } from '../graphql/teams';
 
@@ -15,7 +16,9 @@ const AddChannelModal = ({
   handleBlur,
   handleSubmit,
   isSubmitting,
-  resetForm
+  resetForm,
+  setFieldValue,
+  teamId
 }) => (
   <Modal
     open={open}
@@ -37,7 +40,24 @@ const AddChannelModal = ({
             placeholder='Channel Name'
           />
         </Form.Field>
-
+        <Form.Field>
+          <Checkbox
+            onChange={(e, checked) => setFieldValue('public', !checked)}
+            value={!values.public}
+            label='Private'
+            toggle
+          />
+        </Form.Field>
+        {values.public ? null : (
+          <Form.Field>
+            <MultiSelectUsers
+              value={values.members}
+              handleChange={(e, { value }) => setFieldValue('members', value)}
+              teamId={teamId}
+              placeholder='select members to invite'
+            />
+          </Form.Field>
+        )}
         <Form.Group widths='equal'>
           <Button onClick={handleSubmit} disabled={isSubmitting} fluid>
             Create Channel
@@ -59,8 +79,13 @@ const AddChannelModal = ({
 );
 
 const createChannelMutation = gql`
-  mutation($teamId: Int!, $name: String!) {
-    createChannel(teamId: $teamId, name: $name) {
+  mutation($teamId: Int!, $name: String!, $public: Boolean, $members: [Int!]) {
+    createChannel(
+      teamId: $teamId
+      name: $name
+      public: $public
+      members: $members
+    ) {
       ok
       channel {
         id
@@ -73,7 +98,7 @@ const createChannelMutation = gql`
 export default compose(
   graphql(createChannelMutation),
   withFormik({
-    mapPropsToValues: () => ({ name: '' }),
+    mapPropsToValues: () => ({ name: '', public: true, members: [] }),
     handleSubmit: async (
       values,
       { props: { onClose, teamId, mutate }, setSubmitting }
@@ -82,7 +107,12 @@ export default compose(
         onClose();
 
         await mutate({
-          variables: { teamId: parseInt(teamId), name: values.name },
+          variables: {
+            teamId: parseInt(teamId),
+            name: values.name,
+            public: values.public,
+            members: values.members
+          },
           optimisticResponse: {
             createChannel: {
               __typename: 'Mutation',
