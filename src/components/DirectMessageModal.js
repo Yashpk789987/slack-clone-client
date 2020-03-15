@@ -80,7 +80,7 @@ export default compose(
       const response = await mutate({
         variables: { members, teamId },
         update: (store, { data: { getOrCreateChannel } }) => {
-          const { id, name } = getOrCreateChannel;
+          const { id, name, __typename } = getOrCreateChannel;
 
           const data = store.readQuery({ query: meQuery });
           const teamIdx = findIndex(data.me.teams, ['id', teamId]);
@@ -89,13 +89,17 @@ export default compose(
             c => c.id !== id
           );
           if (notInChannelList) {
-            data.me.teams[teamIdx].channels.push({ id, name, dm: true });
+            data.me.teams[teamIdx].channels.push({
+              id,
+              name,
+              dm: true,
+              __typename
+            });
             store.writeQuery({ query: meQuery, data });
           }
-          //history.push(`/view-team/${teamId}/${id}`);
+          history.push(`/view-team/${teamId}/${id}`);
         }
       });
-      console.log(response);
       onClose();
       resetForm();
     }
