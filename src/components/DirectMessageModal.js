@@ -4,7 +4,9 @@ import { withFormik } from 'formik';
 import { graphql, compose } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import gql from 'graphql-tag';
+import findIndex from 'lodash/findIndex';
 
+import { meQuery } from '../graphql/teams';
 import MultiSelectUsers from './MultiSelectUsers';
 
 const DirectMessageModal = ({
@@ -59,7 +61,10 @@ const DirectMessageModal = ({
 
 const getOrCreateChannelMutation = gql`
   mutation($teamId: Int!, $members: [Int!]!) {
-    getOrCreateChannel(teamId: $teamId, members: $members)
+    getOrCreateChannel(teamId: $teamId, members: $members) {
+      id
+      name
+    }
   }
 `;
 
@@ -70,12 +75,29 @@ export default compose(
     mapPropsToValues: () => ({ members: [] }),
     handleSubmit: async (
       { members },
-      { props: { onClose, teamId, mutate }, setSubmitting }
+      { props: { history, onClose, teamId, mutate }, resetForm }
     ) => {
-      const response = await mutate({ variables: { members, teamId } });
+      const response = await mutate({
+        variables: { members, teamId },
+        update: (store, { data: { getOrCreateChannel } }) => {
+          const { id, name } = getOrCreateChannel;
+
+          const data = store.readQuery({ query: meQuery });
+          const teamIdx = findIndex(data.me.teams, ['id', teamId]);
+
+          const notInChannelList = data.me.teams[teamIdx].channels.every(
+            c => c.id !== id
+          );
+          if (notInChannelList) {
+            data.me.teams[teamIdx].channels.push({ id, name, dm: true });
+            store.writeQuery({ query: meQuery, data });
+          }
+          //history.push(`/view-team/${teamId}/${id}`);
+        }
+      });
       console.log(response);
       onClose();
-      setSubmitting(false);
+      resetForm();
     }
   })
 )(DirectMessageModal);
