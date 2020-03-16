@@ -77,7 +77,7 @@ export default compose(
       { members },
       { props: { history, onClose, teamId, mutate }, resetForm }
     ) => {
-      const response = await mutate({
+      await mutate({
         variables: { members, teamId },
         update: (store, { data: { getOrCreateChannel } }) => {
           const { id, name, __typename } = getOrCreateChannel;
