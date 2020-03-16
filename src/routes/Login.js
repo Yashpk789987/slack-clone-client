@@ -10,6 +10,8 @@ import {
   Message
 } from 'semantic-ui-react';
 
+import { wsLink } from '../apollo.js';
+
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -37,6 +39,7 @@ class Login extends React.Component {
     if (ok) {
       localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
+      wsLink.subscriptionClient.tryReconnect();
       this.props.history.push('/view-team');
     } else {
       const err = {};
