@@ -21,7 +21,7 @@ const SendMessage = ({
   handleBlur,
   handleSubmit,
   isSubmitting,
-  channelId
+  channelId,
 }) => (
   <SendMessageWrapper>
     <FileUpload channelId={channelId}>
@@ -30,7 +30,7 @@ const SendMessage = ({
       </Button>
     </FileUpload>
     <Input
-      onKeyDown={e => {
+      onKeyDown={(e) => {
         if (e.keyCode === ENTER_KEY && !isSubmitting) {
           handleSubmit(e);
         }
@@ -55,7 +55,8 @@ export default withFormik({
       return;
     }
 
-    await onSubmit(values.message);
+    onSubmit(values.message);
+
     resetForm(false);
-  }
+  },
 })(SendMessage);

@@ -8,7 +8,7 @@ const FileUpload = ({
   disableClick,
   channelId,
   mutate,
-  style = {}
+  style = {},
 }) => (
   <Dropzone
     style={style}
@@ -17,8 +17,8 @@ const FileUpload = ({
       const response = await mutate({
         variables: {
           channelId,
-          file
-        }
+          file,
+        },
       });
       console.log(response);
     }}
